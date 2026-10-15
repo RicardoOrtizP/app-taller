@@ -1,0 +1,127 @@
+  <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-800">
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm lg:hidden transition-opacity"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
+
+      {/* Sidebar  */}
+      <aside
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+      >
+        <div>
+          {/* logo y header del sidebar */}
+          <div className="h-16 flex items-center justify-between px-6 border-b borderslate-100 dark:border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-600/30">
+                M
+              </div>
+              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+                MiApplication
+              </span>
+            </div>
+            {/* Boton de cerrar sidebar movil */}
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              <X />
+            </button>
+          </div>
+
+          {/* Menu de navegacion */}
+          <nav className="p-4 space-y-1.5">
+            <p className="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
+              Menú principal
+            </p>
+            {/* opciones del menu */}
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${isActive ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400" : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white"}`
+                  }
+                >
+                  <Icon className="w-5 h-5 shrink-0" />
+                  <span>{item.name}</span>
+                </NavLink>
+              );
+            })}
+          </nav>
+        </div>
+      </aside>
+      {/* Area de navbar y content */}
+      <div className="lg-pl-64 flex flex-col min-h-screen">
+        {/* navbar superior */}
+        <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Toggle sidebar para movil */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              <MenuIcon className="w-6 h-6" />
+            </button>
+
+            {/* Muestra la ruta actual de forma limpia */}
+            <h2 className="text-base font-semibold capitalize text-slate-800 dark:text-slate-200">
+              {location.pathname.replace("/", "").replace("-", " ") ||
+                "Dashboard"}
+            </h2>
+          </div>
+
+          {/* Acciones navbar derecho */}
+          <div className="flex items-center gap-3">
+            {/* Menú desplegable de usuario */}
+            <div className="relative">
+              <button
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none"
+              >
+                <div className="w-8 h-8 rounded-full bg-indigo-600 text-white font-semibold flex items-center justify-center text-sm">
+                  R
+                </div>
+              </button>
+              {/* Menu dropdown user*/}
+              {userMenuOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setUserMenuOpen(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-40-z-50 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 py-1.5  animate-fade-in">
+                    <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
+                      <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                        {"Usuario"}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                        user@mail.com
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        navigate("/profile");
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                    >
+                      Mi Perfil
+                    </button>
+                    <button className="w-full text-left px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30">
+                      Cerrar Sesión
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </header>
+        <main className="flex-1 p-4 sm:p-6 lg:p-0 max-w-7xl w-full mx-auto">
+          <Outlet />
+        </main>
+      </div>
+    </div>
