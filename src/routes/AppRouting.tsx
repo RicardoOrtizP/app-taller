@@ -8,6 +8,7 @@ import { LoginPage } from "../feature/auth/pages/LoginPage";
 import { RegisterPage } from "../feature/auth/pages/RegisterPage";
 import { AppLayout } from "../layouts/AppLayout";
 import { UsersPage } from "../feature/users/pages/UsersPage";
+import { ClientsPage } from "../feature/clients/pages/ClientsPage";
 
 export const AppRoutes = () => {
   return (
@@ -23,7 +24,7 @@ export const AppRoutes = () => {
           <Route path="/today" element={<>Today</>} />
           <Route path="/orders" element={<>Pedidos</>} />
           <Route path="/history" element={<>Historial</>} />
-          <Route path="/clients" element={<>Clientes</>} />
+          <Route path="/clients" element={<ClientsPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/catalog" element={<>Catalog</>} />
           <Route path="/boards" element={<>Tablero</>} />

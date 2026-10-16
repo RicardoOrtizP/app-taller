@@ -1,7 +1,11 @@
-import { Button, Surface, Toast } from "@heroui/react";
+import { Button, Surface } from "@heroui/react";
 import { Trash2, Undo2 } from "lucide-react";
 import type React from "react";
 
+export interface PendingUndoItem<T> {
+  item: T;
+  index: number;
+}
 interface UndoToastProps {
   message: string;
   timeLeft: number;
@@ -55,31 +59,3 @@ export const UndoToast: React.FC<UndoToastProps> = ({
     </div>
   );
 };
-{
-  /* <div className="fixed bottom-6 z-50 animate-fade-in">
-      <Surface
-        variant="default"
-        className="flex items-center gap-4 px-4 py-3 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 shadow-2xl rounded-2xl border border-slate-800 dark:border-slate-200"
-      >
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <Trash2 className="size-4 text-rose-400 dark:text-rose-600 shrink-0" />
-          <span>{message}</span>
-        </div>
-        <div className="flex items-center gap-2 pl-2 border-l border-slate-700 dark:border-slate-300">
-          <span className="flex items-center justify-center size-6 rounded-full bg-slate-800 dark:bg-slate-200 text-xs font-bold text-indigo-400 dark:text-indigo-600">
-            {timeLeft}s
-          </span>
-
-          <Button
-            size="sm"
-            variant="tertiary"
-            onClick={onUndo}
-            className="flex items-center gap-1.5 text-xs font-semibold"
-          >
-            <Undo2 className="size-3.5" />
-            Deshacer
-          </Button>
-        </div>
-      </Surface>
-    </div> */
-}
