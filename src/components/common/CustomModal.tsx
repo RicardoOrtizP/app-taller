@@ -1,4 +1,11 @@
-import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
+import {
+  Button,
+  Input,
+  Modal,
+  Pressable,
+  Surface,
+  TextField,
+} from "@heroui/react";
 import { Form, Rocket } from "lucide-react";
 import type React from "react";
 
@@ -15,6 +22,7 @@ export interface CustomModalProps {
   placement?: "auto" | "center" | "top"; // Posicionamiento del modal
   isDimissable?: boolean; // Si se puede cerrar haciendo click afuera o con la tecla esc
   classIcon?: string;
+  disableAnimation?: boolean;
 }
 
 export const CustomModal: React.FC<CustomModalProps> = ({
@@ -29,6 +37,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
   placement = "center",
   isDimissable = true,
   classIcon = "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400",
+  disableAnimation = true,
 }) => {
   // Mapeo de tamaño a clases max-width
   const sizeClasses: Record<ModalSize, string> = {
