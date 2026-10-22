@@ -9,6 +9,7 @@ import { RegisterPage } from "../feature/auth/pages/RegisterPage";
 import { AppLayout } from "../layouts/AppLayout";
 import { UsersPage } from "../feature/users/pages/UsersPage";
 import { ClientsPage } from "../feature/clients/pages/ClientsPage";
+import { BoardPage } from "../feature/board/pages/BoardPage";
 
 export const AppRoutes = () => {
   return (
@@ -27,7 +28,7 @@ export const AppRoutes = () => {
           <Route path="/clients" element={<ClientsPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/catalog" element={<>Catalog</>} />
-          <Route path="/boards" element={<>Tablero</>} />
+          <Route path="/boards" element={<BoardPage />} />
         </Route>
 
         {/* 2. Rutas de solo visitantes (unauthorized) */}
