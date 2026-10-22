@@ -260,7 +260,7 @@ export const AppLayout = () => {
         </header>
 
         {/* Contenido Principal */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-6 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-2 sm:p-6 lg:p-2 w-full mx-auto">
           <Outlet />
         </main>
       </div>
