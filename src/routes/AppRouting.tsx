@@ -10,6 +10,7 @@ import { AppLayout } from "../layouts/AppLayout";
 import { UsersPage } from "../feature/users/pages/UsersPage";
 import { ClientsPage } from "../feature/clients/pages/ClientsPage";
 import { BoardPage } from "../feature/board/pages/BoardPage";
+import { DashboardPage } from "../feature/dashboard/pages/DashboardPage";
 
 export const AppRoutes = () => {
   return (
@@ -21,7 +22,7 @@ export const AppRoutes = () => {
         <Route element={<AppLayout />}>
           <Route path="/" element={<>Home</>} />
           <Route path="/profile" element={<>Profile page</>} />
-          <Route path="/dashboard" element={<>Dashboard</>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/today" element={<>Today</>} />
           <Route path="/orders" element={<>Pedidos</>} />
           <Route path="/history" element={<>Historial</>} />
